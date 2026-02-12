@@ -1,0 +1,75 @@
+CREATE TABLE [dbo].[Users] (
+    [Id] NVARCHAR(128) NOT NULL,
+    [Email] NVARCHAR(320) NOT NULL,
+    [Role] NVARCHAR(32) NOT NULL,
+    [Department] NVARCHAR(128) NULL,
+    [Name] NVARCHAR(255) NULL,
+    [Avatar] NVARCHAR(2048) NULL,
+    [CreatedAt] DATETIMEOFFSET NOT NULL,
+    [UpdatedAt] DATETIMEOFFSET NOT NULL,
+    CONSTRAINT [PK_Users] PRIMARY KEY CLUSTERED ([Id] ASC)
+);
+GO
+
+CREATE UNIQUE NONCLUSTERED INDEX [UX_Users_Email]
+    ON [dbo].[Users]([Email] ASC);
+GO
+
+CREATE TABLE [dbo].[Assets] (
+    [Id] NVARCHAR(128) NOT NULL,
+    [Name] NVARCHAR(255) NOT NULL,
+    [Category] NVARCHAR(100) NOT NULL,
+    [SerialNumber] NVARCHAR(255) NULL,
+    [Location] NVARCHAR(MAX) NULL,
+    [Status] NVARCHAR(50) NOT NULL,
+    [CreatedAt] DATETIMEOFFSET NOT NULL,
+    [UpdatedAt] DATETIMEOFFSET NOT NULL,
+    CONSTRAINT [PK_Assets] PRIMARY KEY CLUSTERED ([Id] ASC)
+);
+GO
+
+CREATE UNIQUE NONCLUSTERED INDEX [UX_Assets_SerialNumber]
+    ON [dbo].[Assets]([SerialNumber] ASC)
+    WHERE [SerialNumber] IS NOT NULL;
+GO
+
+CREATE TABLE [dbo].[Categories] (
+    [Id] NVARCHAR(128) NOT NULL,
+    [Label] NVARCHAR(128) NOT NULL,
+    [Value] NVARCHAR(128) NOT NULL,
+    [Icon] NVARCHAR(128) NOT NULL,
+    [CreatedAt] DATETIMEOFFSET NOT NULL,
+    [UpdatedAt] DATETIMEOFFSET NOT NULL,
+    CONSTRAINT [PK_Categories] PRIMARY KEY CLUSTERED ([Id] ASC)
+);
+GO
+
+CREATE UNIQUE NONCLUSTERED INDEX [UX_Categories_Value]
+    ON [dbo].[Categories]([Value] ASC);
+GO
+
+CREATE TABLE [dbo].[Departments] (
+    [Id] NVARCHAR(128) NOT NULL,
+    [Name] NVARCHAR(128) NOT NULL,
+    [CreatedAt] DATETIMEOFFSET NOT NULL,
+    [UpdatedAt] DATETIMEOFFSET NOT NULL,
+    CONSTRAINT [PK_Departments] PRIMARY KEY CLUSTERED ([Id] ASC)
+);
+GO
+
+CREATE UNIQUE NONCLUSTERED INDEX [UX_Departments_Name]
+    ON [dbo].[Departments]([Name] ASC);
+GO
+
+CREATE TABLE [dbo].[Vendors] (
+    [Id] NVARCHAR(128) NOT NULL,
+    [Name] NVARCHAR(128) NOT NULL,
+    [CreatedAt] DATETIMEOFFSET NOT NULL,
+    [UpdatedAt] DATETIMEOFFSET NOT NULL,
+    CONSTRAINT [PK_Vendors] PRIMARY KEY CLUSTERED ([Id] ASC)
+);
+GO
+
+CREATE UNIQUE NONCLUSTERED INDEX [UX_Vendors_Name]
+    ON [dbo].[Vendors]([Name] ASC);
+GO

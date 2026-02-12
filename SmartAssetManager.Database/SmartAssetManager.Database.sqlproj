@@ -1,0 +1,17 @@
+<Project Sdk="MSBuild.Sdk.SqlProj/3.2.0">
+  <PropertyGroup>
+    <Name>SmartAssetManager.Database</Name>
+    <ProjectGuid>{8A6467C8-A292-46BC-8E9D-CF89BFA27806}</ProjectGuid>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql160DatabaseSchemaProvider</DSP>
+    <ModelCollation>1033, CI</ModelCollation>
+    <SqlServerVersion>Sql160</SqlServerVersion>
+    <TargetFramework>net8.0</TargetFramework>
+    <RootPath>.</RootPath>
+    <RootNamespace>SmartAssetManager.Database</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Build Include="dbo\Tables\*.sql" />
+    <Build Include="Security\*.sql" />
+  </ItemGroup>
+</Project>
